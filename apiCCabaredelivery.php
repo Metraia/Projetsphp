@@ -126,12 +126,6 @@ if(strpos($meupiruzao, '"verified":true')!== false){
 
 }
 
-elseif(strpos($meupiruzao, "The website is temporarily unable to service your request as it exceeded resource limit. Please try again later.")!== false){
-
-    echo "<span class='badge badge-danger'>#Reprovada</span> ❌ $cc|$mes|$ano|$cvv - $bandeira - $banco - $level - $pais » <span class='badge badge-info'>Retorno:</span> Muitas request.. error » <span class='badge badge-warning'>Tempo de resposta:</span> ".(time() - $time)." s <br>";
-
-}
-
 else{
 
     echo "<span class='badge badge-danger'>#Reprovada</span> ❌ $cc|$mes|$ano|$cvv - $bandeira - $banco - $level - $pais » <span class='badge badge-info'>Retorno:</span> $retorno » <span class='badge badge-warning'>Tempo de resposta:</span> ".(time() - $time)." s <br>";
