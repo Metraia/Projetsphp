@@ -2,6 +2,7 @@
 date_default_timezone_set('America/Sao_Paulo');  
 $tempo_real = date('d/m/Y h:i:s a', time()); 
 
+
 // ================================================================
 // =     __  __ _____ _____ ____      _    _     _   _    _       =
 // =    |  \/  | ____|_   _|  _ \    / \  | |   | | | |  / \      =
@@ -422,8 +423,6 @@ $ini = curl_init();
 curl_setopt($ini, CURLOPT_URL, $link_stripesrc);
 curl_setopt($ini, CURLOPT_FOLLOWLOCATION, 1);
 curl_setopt($ini, CURLOPT_RETURNTRANSFER, 1);
-curl_setopt($ini, CURLOPT_PROXY, "http://p.webshare.io:80");
-curl_setopt($ini, CURLOPT_PROXYUSERPWD, "nnbwziwn-rotate:bhhn820fakhi");
 curl_setopt($ini, CURLOPT_POST, "POST");
 curl_setopt($ini, CURLOPT_SSL_VERIFYPEER, false);
 curl_setopt($ini, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
@@ -462,8 +461,6 @@ $ini = curl_init();
 curl_setopt($ini, CURLOPT_URL, $link_pagar);
 curl_setopt($ini, CURLOPT_FOLLOWLOCATION, 1);
 curl_setopt($ini, CURLOPT_RETURNTRANSFER, 1);
-curl_setopt($ini, CURLOPT_PROXY, "http://p.webshare.io:80");
-curl_setopt($ini, CURLOPT_PROXYUSERPWD, "nnbwziwn-rotate:bhhn820fakhi");
 curl_setopt($ini, CURLOPT_POST, "POST");
 curl_setopt($ini, CURLOPT_SSL_VERIFYPEER, false);
 curl_setopt($ini, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
