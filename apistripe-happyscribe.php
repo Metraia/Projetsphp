@@ -2,17 +2,6 @@
 date_default_timezone_set('America/Sao_Paulo');  
 $tempo_real = date('d/m/Y h:i:s a', time()); 
 
-//strtoupper — Converte uma string para maiúsculas Ex: $teste = strtoupper(getStr($resposta, '',''));
-// $variavel = (int)getStr2($pay, '',''); - (int) "Puchar valores inteiros da variavel"
-// html_entity_decode - Converte HTML para retorno JSON (espeficico para pages sem JSON)
-// str_shuffle = Embaralha nomes na string
-// substr_count — Count the number of substring occurrences
-// implode  - A função implode() retorna uma string dos elementos de um array.
-// stristr - Pesquisa e retorna valores tipo, 'substr'
-// empty = Retorna se a variavel esta vazia. Ex: if (empty($teste))
-// null - Outra forma de retornar se esta vazia. (funciona em algumas ocassioes)
-
-
 // ================================================================
 // =     __  __ _____ _____ ____      _    _     _   _    _       =
 // =    |  \/  | ____|_   _|  _ \    / \  | |   | | | |  / \      =
