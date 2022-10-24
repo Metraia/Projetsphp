@@ -397,7 +397,7 @@ $telefone_fixo = metraiapuxar($dados, '"telefone_fixo":"','"');
 
 // ================ // ====================//==========================//============================= // ================================//=================//
 
-$bearrer = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjkwMDY3IiwidmVyc2lvbiI6MiwidXNlclR5cGUiOiJ1c2VyIiwiaWF0IjoxNjY2NTY5NzAzLCJleHAiOjE2NjY1NzMzMDN9.274hwcnXuZLADpyeBDBDoQDwZDSZ6MLaVquUGTUg_D8';
+$bearrer = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjkwMDY3IiwidmVyc2lvbiI6MiwidXNlclR5cGUiOiJ1c2VyIiwiaWF0IjoxNjY2NTY5NzAzLCJleHAiOjE2NjY1NzMzMDN9.274hwcnXuZLADpyeBDBDoQDwZDSZ6MLaVquUGTUg_D8'; // TROCAVÉL COM SUA CONTA.
 
 
 $header_stripesrc = array (
@@ -452,7 +452,7 @@ $header_pagar = array (
 
 $link_pagar = "https://api.hexometer.com/v2/ql";
 
-$postfields_pagar = '{"operationName":"addCard","variables":{"settings":{"email":"metralhadosbaile2021@gmail.com","name":"'.$nome.'","source":"'.$id_do_carai.'"}},"query":"mutation addCard($settings: AddCardInput) {\n  BillingOps {\n    addCard(settings: $settings) {\n      error_code\n      cardId\n    }\n  }\n}\n"}';
+$postfields_pagar = '{"operationName":"addCard","variables":{"settings":{"email":"EMAILDACONTALOGADAPELOGOOGLE","name":"'.$nome.'","source":"'.$id_do_carai.'"}},"query":"mutation addCard($settings: AddCardInput) {\n  BillingOps {\n    addCard(settings: $settings) {\n      error_code\n      cardId\n    }\n  }\n}\n"}';
 
 
 
