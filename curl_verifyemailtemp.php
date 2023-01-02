@@ -1,9 +1,27 @@
 <?php
 
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    extract($_POST);
+} elseif ($_SERVER['REQUEST_METHOD'] == "GET") {
+    extract($_GET);
+}
+
+
+
+if (file_exists("cookie.txt")!== false) {unlink("cookie.txt");fopen
+  ("cookie.txt", 'w+');fclose
+  ("cookie.txt");}else{fopen
+  ("cookie.txt", 'w+');fclose
+  ("cookie.txt");}
+
 // ================ // ====================//==========================//============================= // ================================//=================
 // ================ // ====================//==============  C U R L - E M A I L  T E M P ================= // ================================//============
 // ================ // ====================//============== P A R A  V E R I F I C A C O E S====================== // ================================//=====
 
+
+$Metraia_cookiamentos = getcwd().'/'.(cookie).'.txt';
+unlink("cookie.txt");
+$id = session_id();
 
 
 $link_invertexto = 'https://www.invertexto.com/gerador-email-temporario';
